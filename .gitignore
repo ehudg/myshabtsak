@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.claude/
+.omc/
+.DS_Store
+.idea/
+*.tsbuildinfo
+data/
