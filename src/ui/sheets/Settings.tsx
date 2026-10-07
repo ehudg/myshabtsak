@@ -70,8 +70,13 @@ export function SettingsSheet() {
   const afterExport = () => {
     if (handoff && to.trim()) { commit(d => { d.settings.handedTo = { name: to.trim(), at: Date.now() }; }); toast(`הניהול סומן כמועבר ל${to.trim()}`, { undo: true }); }
   };
+  const backupFile = () => new File([backup()], fname(), { type: 'application/json' });
+  const exportFile = () => {
+    downloadFile(backupFile());
+    afterExport();
+  };
   const exportShare = async () => {
-    const f = new File([backup()], fname(), { type: 'application/json' });
+    const f = backupFile();
     if (!canShareFiles([f])) { toast('המכשיר לא יודע לשלוח קבצים מכאן – השתמשו ב״שמור קובץ״'); return; }
     try { await navigator.share({ files: [f], title: 'גיבוי שבצ״ק' }); afterExport(); } catch (e) { if ((e as Error).name !== 'AbortError') toast('השליחה לא הצליחה – נסו ״שמור קובץ״'); }
   };
@@ -90,6 +95,8 @@ export function SettingsSheet() {
         {handoff ? <Field label="למי?"><input className="inp" value={to} onChange={e => setTo(e.target.value)} placeholder="שם המנהל הבא" /></Field> : null}
         <div className="row" style={{ marginTop: 12 }}>
           <button className="btn" onClick={() => void copyText(backup(), 'הגיבוי הועתק').then(ok => ok && afterExport())}><Icon n="copy" /> העתק</button>
+          <button className="btn" onClick={exportFile}><Icon n="dl" /> שמור קובץ</button>
+          <button className="btn" onClick={() => void exportShare()}><Icon n="share" /> שתף</button>
         </div>
         <div className="row" style={{ marginTop: 8 }}>
           <button className="btn" onClick={() => fileRef.current?.click()}><Icon n="ul" /> טען מקובץ</button>
