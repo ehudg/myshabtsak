@@ -4,11 +4,12 @@ import { defaults } from './defaults';
 import { addDaysKey, fromKey, todayKey, uid } from './time';
 import { autoAssign, boardDays, cellKey } from './slots';
 
-const NAMES = ['כהן', 'לוי', 'מזרחי', 'פרץ', 'ביטון', 'דהן', 'אברהם', 'פרידמן', 'אזולאי', 'מלכה', 'חדד', 'עמר',
-  'גבאי', 'יוסף', 'שושן', 'אוחנה', 'סויסה', 'אלמוג', 'ברק', 'רוזן', 'שגיא', 'נחום', 'טל', 'זילבר'];
-
+// const NAMES = ['כהן', 'לוי', 'מזרחי', 'פרץ', 'ביטון', 'דהן', 'אברהם', 'פרידמן', 'אזולאי', 'מלכה', 'חדד', 'עמר',
+//   'גבאי', 'יוסף', 'שושן', 'אוחנה', 'סויסה', 'אלמוג', 'ברק', 'רוזן', 'שגיא', 'נחום', 'טל', 'זילבר'];
+const NAMES = [''];
 export function sampleState(): State {
   const s = defaults();
+  return s;
   s.sample = true;
   s.settings.title = 'פלוגה ב׳ – מחלקה 2';
   s.board = { start: todayKey(), days: 4 };

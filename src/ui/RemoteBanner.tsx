@@ -28,22 +28,23 @@ export function RemoteBanner() {
   };
 
   return (
-    <div className="banner remote">
-      <p><b>יש לוח מעודכן באתר</b> · {dm(remote.updatedAt)} {hm(remote.updatedAt)}{known ? '. טעינה תחליף את הלוח שבמכשיר (אפשר לבטל).' : '. הזינו את קוד הלוח כדי לטעון אותו. הקוד נשמר במכשיר, ובפעם הבאה מספיקה לחיצה אחת.'}</p>
-      {known ? (
-        <div className="row">
-          <button className="btn btn-sm btn-accent" disabled={busy} onClick={() => void load(known)}><Icon n="dl" size={18} /> טען</button>
-          <button className="btn btn-sm" onClick={() => setHidden(true)}>לא עכשיו</button>
-          {bad ? <span className="bad-t">הקוד השתנה – <button className="link" onClick={() => { try { localStorage.removeItem('shavtzak.remoteKey'); } catch { /* ignore */ } setBad(false); setHidden(false); setCode(''); }}>הזן מחדש</button></span> : null}
-        </div>
-      ) : (
-        <form className="row nowrap" onSubmit={e => { e.preventDefault(); if (code.trim()) void load(code); }}>
-          <input className="inp sm" value={code} onChange={e => { setCode(e.target.value); setBad(false); }} placeholder="קוד הלוח" aria-label="קוד הלוח" autoComplete="off" autoCapitalize="none" spellCheck={false} dir="ltr" />
-          <button className="btn btn-sm btn-accent" disabled={busy || !code.trim()}>{busy ? '...' : 'טען'}</button>
-          <button type="button" className="btn btn-sm" onClick={() => setHidden(true)}>לא עכשיו</button>
-        </form>
-      )}
-      {bad && !known ? <p className="bad-t" style={{ flexBasis: '100%' }}>הקוד לא נכון. בדקו ונסו שוב.</p> : null}
-    </div>
+    <div></div>
+    // <div className="banner remote">
+    //   <p><b>יש לוח מעודכן באתר</b> · {dm(remote.updatedAt)} {hm(remote.updatedAt)}{known ? '. טעינה תחליף את הלוח שבמכשיר (אפשר לבטל).' : '. הזינו את קוד הלוח כדי לטעון אותו. הקוד נשמר במכשיר, ובפעם הבאה מספיקה לחיצה אחת.'}</p>
+    //   {known ? (
+    //     <div className="row">
+    //       <button className="btn btn-sm btn-accent" disabled={busy} onClick={() => void load(known)}><Icon n="dl" size={18} /> טען</button>
+    //       <button className="btn btn-sm" onClick={() => setHidden(true)}>לא עכשיו</button>
+    //       {bad ? <span className="bad-t">הקוד השתנה – <button className="link" onClick={() => { try { localStorage.removeItem('shavtzak.remoteKey'); } catch { /* ignore */ } setBad(false); setHidden(false); setCode(''); }}>הזן מחדש</button></span> : null}
+    //     </div>
+    //   ) : (
+    //     <form className="row nowrap" onSubmit={e => { e.preventDefault(); if (code.trim()) void load(code); }}>
+    //       <input className="inp sm" value={code} onChange={e => { setCode(e.target.value); setBad(false); }} placeholder="קוד הלוח" aria-label="קוד הלוח" autoComplete="off" autoCapitalize="none" spellCheck={false} dir="ltr" />
+    //       <button className="btn btn-sm btn-accent" disabled={busy || !code.trim()}>{busy ? '...' : 'טען'}</button>
+    //       <button type="button" className="btn btn-sm" onClick={() => setHidden(true)}>לא עכשיו</button>
+    //     </form>
+    //   )}
+    //   {bad && !known ? <p className="bad-t" style={{ flexBasis: '100%' }}>הקוד לא נכון. בדקו ונסו שוב.</p> : null}
+    // </div>
   );
 }
