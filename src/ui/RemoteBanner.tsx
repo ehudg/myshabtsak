@@ -1,31 +1,31 @@
 // Shows when the site holds a newer board than this device: enter the code once, then one tap per update.
-import { useEffect, useState } from 'react';
-import { commit, normalize } from '../lib/store';
-import { appliedAt, decryptRemote, fetchRemote, markApplied, saveCode, savedCode, type RemoteBoard } from '../lib/remote';
-import { dm, hm } from '../lib/time';
-import { Icon } from './icons';
-import { toast } from './uiStore';
+// import { useEffect, useState } from 'react';
+// import { commit, normalize } from '../lib/store';
+// import { appliedAt, decryptRemote, fetchRemote, markApplied, saveCode, savedCode, type RemoteBoard } from '../lib/remote';
+// import { dm, hm } from '../lib/time';
+// import { Icon } from './icons';
+// import { toast } from './uiStore';
 
 export function RemoteBanner() {
-  const [remote, setRemote] = useState<RemoteBoard | null>(null);
-  const [code, setCode] = useState('');
-  const [busy, setBusy] = useState(false);
-  const [bad, setBad] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  useEffect(() => { fetchRemote().then(r => { if (r && r.updatedAt > appliedAt()) setRemote(r); }); }, []);
-  if (!remote || hidden) return null;
-  const known = savedCode();
+  // const [remote, setRemote] = useState<RemoteBoard | null>(null);
+  // const [code, setCode] = useState('');
+  // const [busy, setBusy] = useState(false);
+  // const [bad, setBad] = useState(false);
+  // const [hidden, setHidden] = useState(false);
+  // useEffect(() => { fetchRemote().then(r => { if (r && r.updatedAt > appliedAt()) setRemote(r); }); }, []);
+  // if (!remote || hidden) return null;
+  // const known = savedCode();
 
-  const load = async (c: string) => {
-    setBusy(true); setBad(false);
-    try {
-      const j = await decryptRemote(remote, c) as { state?: unknown };
-      const st = normalize(j.state ?? j);
-      commit(d => { Object.assign(d, st); d.sample = false; d.settings.handedTo = null; d.settings.receivedFrom = { name: 'האתר', at: remote.updatedAt }; });
-      saveCode(c); markApplied(remote.updatedAt); setRemote(null);
-      toast(`הלוח נטען מהאתר · ${st.people.length} חיילים`, { undo: true });
-    } catch { setBad(true); } finally { setBusy(false); }
-  };
+  // const load = async (c: string) => {
+  //   setBusy(true); setBad(false);
+  //   try {
+  //     const j = await decryptRemote(remote, c) as { state?: unknown };
+  //     const st = normalize(j.state ?? j);
+  //     commit(d => { Object.assign(d, st); d.sample = false; d.settings.handedTo = null; d.settings.receivedFrom = { name: 'האתר', at: remote.updatedAt }; });
+  //     saveCode(c); markApplied(remote.updatedAt); setRemote(null);
+  //     toast(`הלוח נטען מהאתר · ${st.people.length} חיילים`, { undo: true });
+  //   } catch { setBad(true); } finally { setBusy(false); }
+  // };
 
   return (
     <div></div>
